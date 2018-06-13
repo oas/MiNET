@@ -347,14 +347,10 @@ namespace MiNET
 
 								string b64Key = ecKey.PublicKey.ToDerEncoded().EncodeBase64();
 
-								EduTokenManager tokenManager = _session.Server.EduTokenManager;
-
-								string signedToken = tokenManager.GetSignedToken(_playerInfo.TenantId);
-
 								var handshakeJson = new HandshakeData()
 								{
 									salt = ecKey.SecretPrepend.EncodeBase64(),
-									signedToken = signedToken
+									signedToken = Config.GetProperty("SignedToken", "")
 								};
 
 								string val = JWT.Encode(handshakeJson, ecKey.Key, JwsAlgorithm.ES384, new Dictionary<string, object> {{"x5u", b64Key}});

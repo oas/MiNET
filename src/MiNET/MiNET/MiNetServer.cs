@@ -162,8 +162,6 @@ namespace MiNET
 
 				if (ServerRole == ServerRole.Full || ServerRole == ServerRole.Node)
 				{
-					EduTokenManager = new EduTokenManager();
-
 					Log.Info("Loading plugins...");
 					PluginManager = new PluginManager();
 					PluginManager.LoadPlugins();
